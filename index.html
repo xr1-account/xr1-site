@@ -295,7 +295,6 @@
             width: 100%; height: 100%;
             z-index: 0;
             pointer-events: none;
-            opacity: 0.18;
         }
 
         /* ── DISCORD LOGIN ── */
@@ -437,32 +436,27 @@ function resizeCanvas() {
 resizeCanvas();
 window.addEventListener('resize', resizeCanvas);
 
-const chars = 'XR1XR1XR1STRUCTUREXR1';
-const fontSize = 14;
-let columns, drops;
+const CHARS = 'XR1';
+const FS = 14;
+let drops = [];
 
-function initDrops() {
-    columns = Math.floor(canvas.width / fontSize);
-    drops = Array(columns).fill(1);
+function resizeDrops() {
+    drops = Array(Math.floor(canvas.width / FS)).fill(0).map(() => Math.floor(Math.random() * canvas.height / FS));
 }
-initDrops();
-window.addEventListener('resize', initDrops);
+resizeDrops();
+window.addEventListener('resize', resizeDrops);
 
-function drawMatrix() {
-    ctx.fillStyle = 'rgba(5,5,5,0.06)';
+setInterval(() => {
+    ctx.fillStyle = 'rgba(0,0,0,0.05)';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     ctx.fillStyle = '#E60000';
-    ctx.font = fontSize + 'px JetBrains Mono';
-    for (let i = 0; i < drops.length; i++) {
-        const char = chars[Math.floor(Math.random() * chars.length)];
-        ctx.fillText(char, i * fontSize, drops[i] * fontSize);
-        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-            drops[i] = 0;
-        }
+    ctx.font = FS + 'px monospace';
+    drops.forEach((y, i) => {
+        ctx.fillText(CHARS[Math.floor(Math.random() * CHARS.length)], i * FS, y * FS);
+        if (y * FS > canvas.height && Math.random() > 0.975) drops[i] = 0;
         drops[i]++;
-    }
-}
-setInterval(drawMatrix, 50);
+    });
+}, 50);
 
 // Scroll reveal
 const observer = new IntersectionObserver((entries) => {
