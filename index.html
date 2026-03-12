@@ -53,14 +53,15 @@
             pointer-events: none;
         }
         .hero-panel {
-            background: rgba(5,5,5,0.75);
-            border: 1px solid rgba(230,0,0,0.15);
-            border-radius: 20px;
-            padding: 48px 56px;
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            max-width: 680px;
+            background: rgba(5,5,5,0.85);
+            border: 1px solid rgba(230,0,0,0.25);
+            border-radius: 24px;
+            padding: 56px 64px;
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            max-width: 720px;
             width: 100%;
+            box-shadow: 0 0 60px rgba(230,0,0,0.06), 0 8px 32px rgba(0,0,0,0.5);
         }
         .hero-badge {
             display: inline-flex;
@@ -87,97 +88,83 @@
         @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.4;transform:scale(.8)} }
 
         .hero-title {
-            font-size: clamp(42px, 7vw, 80px);
-            font-weight: 900;
-            line-height: 0.95;
-            letter-spacing: -2px;
-            margin-bottom: 16px;
             font-family: 'JetBrains Mono', monospace;
+            font-weight: 900;
+            line-height: 1;
+            margin-bottom: 20px;
+        }
+        .hero-title .structure {
+            font-size: clamp(20px, 3.5vw, 32px);
+            letter-spacing: 12px;
+            color: var(--white);
+            display: block;
+            margin-bottom: 8px;
         }
         .hero-title .xr1 {
+            font-size: clamp(56px, 9vw, 100px);
             color: var(--red);
-            text-shadow: 0 0 40px rgba(230,0,0,0.4);
+            text-shadow: 0 0 50px rgba(230,0,0,0.5), 0 0 100px rgba(230,0,0,0.2);
+            letter-spacing: -2px;
+            display: block;
         }
         .hero-subtitle {
-            font-size: clamp(12px, 1.8vw, 15px);
-            letter-spacing: 4px;
+            font-size: clamp(13px, 2vw, 17px);
+            letter-spacing: 5px;
             color: var(--red);
             font-weight: 600;
             text-transform: uppercase;
-            margin-bottom: 16px;
+            margin-bottom: 20px;
             font-family: 'JetBrains Mono', monospace;
+            opacity: 0.85;
         }
         .hero-desc {
-            font-size: clamp(13px, 1.5vw, 16px);
-            color: var(--muted);
-            line-height: 1.7;
-            margin-bottom: 36px;
+            font-size: clamp(13px, 1.5vw, 15px);
+            color: #888;
+            line-height: 1.8;
+            margin-bottom: 40px;
+            font-family: 'Inter', sans-serif;
         }
         .hero-stats {
             display: flex;
-            gap: 32px;
-            margin-bottom: 36px;
+            gap: 0;
+            margin-bottom: 40px;
             flex-wrap: wrap;
             justify-content: center;
         }
         .hero-stat {
             text-align: center;
+            padding: 0 20px;
+            border-right: 1px solid rgba(230,0,0,0.15);
         }
+        .hero-stat:last-child { border-right: none; }
         .hero-stat-value {
-            font-size: 28px;
+            font-size: 26px;
             font-weight: 900;
             font-family: 'JetBrains Mono', monospace;
         }
         .hero-stat-label {
-            font-size: 10px;
-            color: var(--muted);
+            font-size: 9px;
+            color: #555;
             text-transform: uppercase;
             letter-spacing: 2px;
             margin-top: 4px;
         }
-        .hero-cta {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background: var(--red);
-            color: white;
-            padding: 14px 32px;
-            border-radius: 8px;
-            font-weight: 700;
-            font-size: 14px;
-            text-decoration: none;
-            letter-spacing: 1px;
-            transition: all 0.3s;
-            border: 2px solid var(--red);
-        }
-        .hero-cta:hover {
-            background: transparent;
-            color: var(--red);
-            box-shadow: 0 0 30px rgba(230,0,0,0.3);
-        }
-        .hero-version {
-            margin-top: 20px;
-            font-size: 11px;
-            color: var(--muted);
-            letter-spacing: 2px;
-            font-family: 'JetBrains Mono', monospace;
-        }
-
-        .hero-cta {
-            display: none;
-        }
 
         /* ── FOOTER ── */
         .footer {
-            border-top: 1px solid var(--border);
-            padding: 40px;
+            border-top: 1px solid rgba(230,0,0,0.1);
+            padding: 32px 40px;
             text-align: center;
-            color: var(--muted);
-            font-size: 12px;
+            color: #444;
+            font-size: 11px;
             position: relative;
             z-index: 1;
+            font-family: 'JetBrains Mono', monospace;
+            letter-spacing: 1px;
         }
-        .footer a { color: var(--red); text-decoration: none; }
+        .footer a { color: var(--red); text-decoration: none; opacity: 0.7; transition: opacity 0.3s; }
+        .footer a:hover { opacity: 1; }
+        .footer strong { color: var(--red); }
 
         /* ── MATRIX RAIN ── */
         #matrix-canvas {
@@ -193,18 +180,18 @@
             display: inline-flex;
             align-items: center;
             gap: 12px;
-            padding: 16px 36px;
+            padding: 14px 32px;
             border-radius: 10px;
             background: #5865F2;
             color: #fff;
             font-family: 'Inter', sans-serif;
-            font-size: 16px;
+            font-size: 15px;
             font-weight: 700;
             text-decoration: none;
             letter-spacing: 1px;
             transition: all 0.3s ease;
             box-shadow: 0 4px 30px rgba(88,101,242,0.3);
-            margin-top: 16px;
+            margin-top: 0;
         }
         .discord-btn:hover {
             transform: translateY(-2px);
@@ -233,7 +220,8 @@
             DEV IN PROGRESS
         </div>
         <h1 class="hero-title">
-            STRUCTURE<br><span class="xr1">XR1</span>
+            <span class="structure">STRUCTURE</span>
+            <span class="xr1">XR1</span>
         </h1>
         <p class="hero-subtitle">eXtended Reality #1</p>
         <p class="hero-desc">
@@ -265,7 +253,6 @@
             <svg viewBox="0 0 24 24"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/></svg>
             Connexion Discord
         </a>
-        <div class="hero-version">v3.7.2</div>
     </div>
 </section>
 
